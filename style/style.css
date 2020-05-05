@@ -30,8 +30,6 @@ body {
 }
 
 .logo-area {
-    /* margin-top: 10px;
-    margin-bottom: 10px; */
     vertical-align: center;
 }
 
@@ -53,7 +51,7 @@ body {
 }
 
 #header-logo {
-    max-height: 80%;
+    max-height: 80px;
     height: auto;
     max-width: 100%;
     display: inline;
