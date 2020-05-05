@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="lib/aframe.min.js"></script>
+    <script src="lib/aframe-ar.js"></script>
+    <script src="lib/play-all-model-animations.js"></script>
+    <script src="lib/aframe-orbit-controls.min.js"></script>
+    <script src="lib/merge-images.js"></script>
+    <script src="js/base.js"></script>
+    <link rel="stylesheet" href="style/ar-style.css">
+    <title>3D Model Viewer</title>
+</head>
+
+<body style="margin: 0px; overflow: hidden;">
+
+    <div class="buttons">
+        <button id="shot-btn" onclick="screenShot()"></button>
+    </div>
+
+    <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false;" gltf-model="dracoDecoderPath: lib/draco/;">
+        <a-assets>
+            <!-- 模型的檔案位置 -->
+            <a-asset-item id="female-model-1" src="models/001.glb"></a-asset-item>
+            <a-asset-item id="female-model-2" src="models/001-l.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="target" gltf-model="#female-model-1" position="-0.2 1 2" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity id="target" gltf-model="#female-model-2" position="-1 1 2" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity id="target" gltf-model="#model" position="0 1 0" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity camera orbit-controls="
+        target: 0 2 -1;
+        minDistance: 0;
+        maxDistance: 180;
+        enablePan: true;
+        rotateSpeed: 0.5;
+        zoomSpeed: 1;
+        enableKeys: true;
+        maxDistance: 10;
+        minDistance: 1;
+        maxPolarAngle: 90;
+        initialPosition: 0 0 2;
+        "></a-entity>
+    </a-scene>
+
+    <!-- <canvas id="image-artboard"></canvas> -->
+    <a id="download-link"></a>
+    <script src="js/camera.js"></script>
+</body>
+
+</html>

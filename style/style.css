@@ -1,0 +1,108 @@
+html,
+body {
+    height: 100%;
+}
+
+#main-div {
+    height: 100%;
+    background-color: #F8E2EA;
+    background-image: url('../img/bg-angels.png');
+    background-size: cover;
+}
+
+.nav {
+    background-image: url('../img/angels-title.png');
+    background-size: 100% 80px;
+    height: 80px;
+}
+
+.ar-button-area {
+    position: absolute;
+    bottom: 0;
+}
+
+.footer {
+    background-color: #002255;
+    color: whitesmoke;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.logo-area {
+    /* margin-top: 10px;
+    margin-bottom: 10px; */
+    vertical-align: center;
+}
+
+.footer-logo {
+    max-height: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.vertical-center {
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.copyright {
+    font-size: 12px;
+}
+
+#header-logo {
+    max-height: 80%;
+    height: auto;
+    max-width: 100%;
+    display: inline;
+}
+
+#header-title {
+    color: white;
+    display: inline;
+}
+
+#ar-button-area {
+    height: 0;
+    bottom: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+#ar-button {
+    color: #002255;
+    background-color: white;
+    padding: 10px;
+    border-radius: 50px;
+    height: 50px;
+    width: 250px;
+    box-shadow: 0px 0px 20px rgba(50, 50, 50, 0.2);
+    display: block;
+}
+
+#side-info {
+    color: white;
+    border-width: 0;
+    position: absolute;
+    left: 0;
+    bottom: 30%;
+    width: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 0px 10px 10px 0px;
+    background: linear-gradient(0deg, rgba(0, 117, 194, 1) 0%, rgba(0, 158, 159, 1) 100%);
+    z-index: 10;
+}
+
+.icon-baseball {
+    width: 20px;
+    margin-bottom: 5px;
+    transform: rotate(-45deg);
+}
+
+.blur-view {
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+}
