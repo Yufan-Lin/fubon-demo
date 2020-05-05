@@ -31,6 +31,9 @@ function hideAlertView() {
     mainView.classList.remove('blur-view');
     aScene.classList.remove('blur-view');
 
+    document.querySelector('#ar-button').classList.remove('d-none');
+    document.querySelector('#side-info').classList.remove('d-none');
+
     playAudio();
 }
 
