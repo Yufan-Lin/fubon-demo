@@ -2,9 +2,46 @@
 
 AFRAME.registerComponent('show-view', {
     init: function() {
-        document.querySelector('#ar-button').classList.remove('d-none');
-        document.querySelector('#side-info').classList.remove('d-none');
+        let shownViews = document.querySelectorAll('.shown-view');
+        shownViews.forEach((el) => {
+            el.classList.remove('d-none');
+        });
     }
+});
+
+AFRAME.registerComponent('audio-player', {
+    schema: {
+        target: { type: 'string', default: '' }
+    },
+
+    init: function() {
+        this.model = null;
+        this.mixer = null;
+
+        var model = this.el.getObject3D('mesh');
+        if (model) {
+            this.load(model);
+        } else {
+            this.el.addEventListener('model-loaded', function(e) {
+                this.load(e.detail.model);
+            }.bind(this));
+        }
+    },
+
+    load: function(model) {
+        this.model = model;
+        this.mixer = new THREE.AnimationMixer(model);
+        this.mixer.addEventListener('loop', () => {
+            console.log("sound!!!");
+            let sound = document.querySelector(this.data.target);
+            sound.play();
+        });
+    }
+});
+
+let model = document.querySelector('#female-model-left');
+model.addEventListener('loopEnd', (e) => {
+    console.log('Looppppp');
 });
 
 // exec when init
@@ -18,8 +55,12 @@ arBtn.addEventListener('click', (el) => {
 });
 
 function playAudio() {
-    let audio = document.querySelector('#model-audio');
-    audio.play();
+    let entities = document.querySelectorAll('[sound]');
+    entities.forEach((el) => {
+        el.components.sound.stopSound();
+        el.components.sound.playSound();
+    });
+
 }
 
 // Alert
@@ -43,7 +84,7 @@ function hideAlertView() {
     let alertBackgound = document.querySelector('#alert-background');
     alertBackgound.classList.add('d-none');
 
-    playAudio();
+    // playAudio();
 }
 
 function copyLink() {
@@ -75,7 +116,6 @@ function copyLink() {
         // for other os
 
         input.select();
-
     }
 
     document.execCommand('copy');

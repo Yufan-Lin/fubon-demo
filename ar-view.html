@@ -9,7 +9,6 @@
     <script src="lib/play-all-model-animations.js"></script>
     <script src="lib/aframe-orbit-controls.min.js"></script>
     <script src="lib/merge-images.js"></script>
-    <script src="js/base.js"></script>
     <link rel="stylesheet" href="style/ar-style.css">
     <title>3D Model Viewer</title>
 </head>
@@ -18,17 +17,26 @@
 
     <div class="buttons">
         <button id="shot-btn" onclick="screenShot()"></button>
+        <button class="btn sound-btn shown-view d-none" onclick="togglePlaySound(this, 'w')"></button>
     </div>
 
     <a-scene embedded arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false;" gltf-model="dracoDecoderPath: lib/draco/;">
         <a-assets>
-            <!-- 模型的檔案位置 -->
-            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
+            <!-- ### 檔案位置 ### -->
+
+            <!-- 左邊模型 -->
             <a-asset-item id="female-model-left" src="models/001.glb"></a-asset-item>
+            <!-- 右邊模型 -->
+            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
+            <!-- 聲音檔 -->
+            <audio id="model-audio" src="aud/001.mp3" type="audio/mp3"></audio>
         </a-assets>
 
-        <a-entity id="target" gltf-model="#female-model-right" position="-0.2 1 2" rotation="0 0 0" play-all-model-animations></a-entity>
-        <a-entity id="target" gltf-model="#female-model-left" position="-1 1 2" rotation="0 0 0" play-all-model-animations></a-entity>
+        <!-- 左邊模型：position為模型位置 -->
+        <a-entity id="target" gltf-model="#female-model-left" position="-1 1 2" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
+        <!-- 右邊模型：position為模型位置 -->
+        <a-entity id="target" gltf-model="#female-model-right" position="-0.2 1 2" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
+
         <a-entity camera orbit-controls="
         target: 0 2 -1;
         minDistance: 0;
@@ -46,6 +54,7 @@
 
     <!-- <canvas id="image-artboard"></canvas> -->
     <a id="download-link"></a>
+    <script src="js/base.js"></script>
     <script src="js/camera.js"></script>
 </body>
 

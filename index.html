@@ -7,7 +7,6 @@
     <script src="lib/aframe.min.js"></script>
     <script src="lib/play-all-model-animations.js"></script>
     <script src="lib/aframe-orbit-controls.min.js"></script>
-    <script src="js/base.js"></script>
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/alert.css">
@@ -36,7 +35,8 @@
 
                 <div id="ar-button-area" class="row text-center">
                     <div class="mx-auto">
-                        <button href="" id="ar-button" class="btn btn-light d-none">用AR看看吧！</button>
+                        <button href="" id="ar-button" class="btn btn-light shown-view d-none" style="display: inline;">用AR看看吧！</button>
+                        <button class="btn sound-btn shown-view d-none" onclick="togglePlaySound(this, 'b')"></button>
                     </div>
                 </div>
 
@@ -67,19 +67,27 @@
 
         </div>
 
-        <button id="side-info" class="btn btn-light d-none"><img class="icon-baseball" src="img/icon-baseball.png">賽<br>事<br>資<br>訊</button>
+        <button id="side-info" class="btn btn-light shown-view d-none"><img class="icon-baseball" src="img/icon-baseball.png">賽<br>事<br>資<br>訊</button>
 
     </div>
 
     <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view>
         <a-assets>
-            <!-- 模型的檔案位置 -->
-            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
+            <!-- ### 檔案位置 ### -->
+
+            <!-- 左邊模型 -->
             <a-asset-item id="female-model-left" src="models/001.glb"></a-asset-item>
+            <!-- 右邊模型 -->
+            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
+            <!-- 聲音檔 -->
+            <audio id="model-audio" src="aud/001.mp3" type="audio/mp3"></audio>
         </a-assets>
 
-        <a-entity class="3d-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
-        <a-entity class="3d-model" gltf-model="#female-model-left" position="-1 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
+        <!-- 左邊邊模型：position為模型位置 -->
+        <a-entity class="3d-model" gltf-model="#female-model-left" position="-1 1.2 2.8" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
+        <!-- 右邊模型：position為模型位置 -->
+        <a-entity class="3d-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
+
 
         <a-entity camera orbit-controls="
         target: 0 2 0;
@@ -118,13 +126,9 @@
         </div>
     </div>
 
-
     <!-- Non-UI components -->
 
-    <audio id="model-audio">
-        <source src="aud/001.mp3" type="audio/mp3">
-    </audio>
-
+    <script src="js/base.js"></script>
     <script src="js/app.js"></script>
 </body>
 
