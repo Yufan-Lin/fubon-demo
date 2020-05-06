@@ -1,3 +1,12 @@
+// aframe event
+
+AFRAME.registerComponent('show-view', {
+    init: function() {
+        document.querySelector('#ar-button').classList.remove('d-none');
+        document.querySelector('#side-info').classList.remove('d-none');
+    }
+});
+
 // exec when init
 var input = document.querySelector('input');
 input.value = document.URL;
@@ -31,8 +40,8 @@ function hideAlertView() {
     mainView.classList.remove('blur-view');
     aScene.classList.remove('blur-view');
 
-    document.querySelector('#ar-button').classList.remove('d-none');
-    document.querySelector('#side-info').classList.remove('d-none');
+    let alertBackgound = document.querySelector('#alert-background');
+    alertBackgound.classList.add('d-none');
 
     playAudio();
 }

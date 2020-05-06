@@ -22,4 +22,12 @@ p {
     text-align: center;
 }
 
+#alert-background {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
 .alert-btn {}

@@ -71,17 +71,16 @@
 
     </div>
 
-    <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;">
+    <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view>
         <a-assets>
-            <a-asset-item id="female-model-1" src="models/001.glb"></a-asset-item>
-            <a-asset-item id="female-model-2" src="models/001-l.glb"></a-asset-item>
-            <!-- <a-asset-item id="model" src="models/001.gltf"></a-asset-item> -->
+            <!-- 模型的檔案位置 -->
+            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
+            <a-asset-item id="female-model-left" src="models/001.glb"></a-asset-item>
         </a-assets>
 
-        <a-entity class="3d-model" gltf-model="#female-model-1" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
-        <a-entity class="3d-model" gltf-model="#female-model-2" position="-1 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity class="3d-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity class="3d-model" gltf-model="#female-model-left" position="-1 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
 
-        <a-entity class="3d-model" gltf-model="#model" position="-0.3 1.1 0" rotation="0 0 0" play-all-model-animations></a-entity>
         <a-entity camera orbit-controls="
         target: 0 2 0;
         minDistance: 0;
@@ -97,23 +96,25 @@
         "></a-entity>
     </a-scene>
 
-    <div id="alert-popover" class="vertical-center">
-        <div>
-            <h4>AR體驗</h4>
-            <p>如無法開啟，請複製連結到可支援的瀏覽器中開啟</p>
-            <ul>
-                <li>iOS請使用Safari開啟</li>
-                <li>Android建議用Chrome開啟</li>
-            </ul>
-        </div>
+    <div id="alert-background">
+        <div id="alert-popover" class="vertical-center">
+            <div>
+                <h4>AR體驗</h4>
+                <p>如無法開啟，請複製連結到可支援的瀏覽器中開啟</p>
+                <ul>
+                    <li>iOS請使用Safari開啟</li>
+                    <li>Android建議用Chrome開啟</li>
+                </ul>
+            </div>
 
-        <div style="text-align: center;">
-            <button id="button-start" class="btn btn-info alert-btn" onclick="hideAlertView()">開始體驗</button>
-            <button id="button-copy-link" class="btn btn-info alert-btn" onclick="copyLink()">複製連結</button>
-        </div>
+            <div style="text-align: center;">
+                <button id="button-start" class="btn btn-info alert-btn" onclick="hideAlertView()">開始體驗</button>
+                <button id="button-copy-link" class="btn btn-info alert-btn" onclick="copyLink()">複製連結</button>
+            </div>
 
-        <div>
-            <input id="url-input" type="text" value="">
+            <div>
+                <input id="url-input" type="text" value="">
+            </div>
         </div>
     </div>
 
