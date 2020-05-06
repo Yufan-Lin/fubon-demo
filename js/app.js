@@ -39,6 +39,11 @@ AFRAME.registerComponent('audio-player', {
     }
 });
 
+function openArDemo() {
+
+    window.open('ar-view.html', '_self');
+}
+
 let model = document.querySelector('#female-model-left');
 model.addEventListener('loopEnd', (e) => {
     console.log('Looppppp');
@@ -53,15 +58,6 @@ arBtn.addEventListener('click', (el) => {
     playAudio();
     window.open('ar-view.html', '_self');
 });
-
-function playAudio() {
-    let entities = document.querySelectorAll('[sound]');
-    entities.forEach((el) => {
-        el.components.sound.stopSound();
-        el.components.sound.playSound();
-    });
-
-}
 
 // Alert
 
@@ -83,8 +79,6 @@ function hideAlertView() {
 
     let alertBackgound = document.querySelector('#alert-background');
     alertBackgound.classList.add('d-none');
-
-    // playAudio();
 }
 
 function copyLink() {
