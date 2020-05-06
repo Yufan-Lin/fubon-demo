@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="lib/aframe.min.js"></script>
+    <!-- <script src="lib/aframe.dev.js"></script> -->
     <script src="lib/play-all-model-animations.js"></script>
     <script src="lib/aframe-orbit-controls.min.js"></script>
     <link rel="stylesheet" href="lib/bootstrap.min.css">
@@ -72,7 +73,7 @@
     </div>
 
     <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view>
-        <a-assets>
+        <a-assets timeout="10000">
             <!-- ### 檔案位置 ### -->
 
             <!-- 左邊模型 -->
