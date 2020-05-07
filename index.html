@@ -72,23 +72,23 @@
 
     </div>
 
-    <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view>
+    <!-- 聲音檔 -->
+    <audio id="model-audio" src="aud/001.mp3" preload="auto"></audio>
+
+    <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view debugUIEnabled: false; renderer="logarithmicDepthBuffer: true; precision: low; colorManagement: true;">
+
         <a-assets timeout="10000">
             <!-- ### 檔案位置 ### -->
-
             <!-- 左邊模型 -->
-            <a-asset-item id="female-model-left" src="models/001.glb"></a-asset-item>
+            <a-asset-item id="female-model-left" src="models/queena_draco.glb"></a-asset-item>
             <!-- 右邊模型 -->
-            <a-asset-item id="female-model-right" src="models/001_draco.glb"></a-asset-item>
-            <!-- 聲音檔 -->
-            <audio id="model-audio" src="aud/001.mp3" type="audio/mp3"></audio>
+            <a-asset-item id="female-model-right" src="models/anny_draco.glb"></a-asset-item>
         </a-assets>
 
         <!-- 左邊邊模型：position為模型位置 -->
-        <a-entity class="3d-model" gltf-model="#female-model-left" position="-1 1.2 2.8" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
+        <a-entity class="female-model" gltf-model="#female-model-left" position="-0.5 1.2 0" rotation="0 0 0" play-all-model-animations></a-entity>
         <!-- 右邊模型：position為模型位置 -->
-        <a-entity class="3d-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations sound="src: #model-audio"></a-entity>
-
+        <a-entity class="female-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
 
         <a-entity camera orbit-controls="
         target: 0 2 0;

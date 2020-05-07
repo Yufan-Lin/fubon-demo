@@ -79,6 +79,10 @@ function hideAlertView() {
 
     let alertBackgound = document.querySelector('#alert-background');
     alertBackgound.classList.add('d-none');
+
+    let sound = document.querySelector('#model-audio');
+    sound.play()
+    sound.pause();
 }
 
 function copyLink() {
