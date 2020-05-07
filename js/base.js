@@ -13,13 +13,17 @@ window.onload = () => {
         }
         lastTouchEnd = now;
     }, false);
+
+    let sound = document.querySelector('#model-audio');
+    sound.play();
+    sound.pause();
 }
 
 let models = document.querySelectorAll('.female-model');
-
 var loadedCount = 0;
-
 let voiceLaggingTime = 0.2;
+var isFirstEnter = true;
+var isPlaySound = false;
 
 models.forEach((el) => {
     el.addEventListener('model-did-load', (e) => {
@@ -46,7 +50,6 @@ models.forEach((el) => {
     });
 });
 
-
 function playAnimation() {
 
     if (loadedCount < models.length) return
@@ -58,22 +61,53 @@ function playAnimation() {
 
 }
 
-var isPlaySound = false;
-
-function togglePlaySound(el, supffix) {
+function togglePlaySound(el, supffix, isDelayPlay) {
     console.log("Play" + isPlaySound);
 
     let sound = document.querySelector('#model-audio');
 
     let actionTime = models[0].components['play-all-model-animations'].getActionTime() + voiceLaggingTime;
     console.log('time: ' + actionTime);
+    let loadingDelayTime = 1;
 
     isPlaySound = !isPlaySound;
 
     if (isPlaySound == true) {
 
-        sound.play();
-        sound.currentTime = actionTime;
+        if (isFirstEnter && isDelayPlay) {
+
+            let hidden = 'hide-view';
+
+            sound.play();
+            sound.currentTime = actionTime;
+            sound.pause();
+
+            let soundBtn = document.querySelector('#sound-btn');
+            soundBtn.classList.add(hidden);
+
+            let loader = document.querySelector('.loader');
+            loader.classList.remove(hidden);
+
+            setTimeout(() => {
+
+                let soundBtn = document.querySelector('#sound-btn');
+                soundBtn.classList.remove(hidden);
+
+                let loader = document.querySelector('.loader');
+                loader.classList.add(hidden);
+
+                sound.play();
+                sound.currentTime = actionTime + loadingDelayTime;
+
+            }, loadingDelayTime * 1000);
+
+            isFirstEnter = false;
+
+        } else {
+
+            sound.play();
+            sound.currentTime = actionTime;
+        }
 
         var iconName = "btn-sound-play-" + supffix;
 

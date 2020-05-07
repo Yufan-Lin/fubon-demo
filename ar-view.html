@@ -17,7 +17,8 @@
 
     <div class="buttons">
         <button id="shot-btn" onclick="screenShot()"></button>
-        <button class="btn sound-btn shown-view d-none" onclick="togglePlaySound(this, 'w')"></button>
+        <button id="sound-btn" class="btn sound-btn shown-view" onclick="togglePlaySound(this, 'w', true)"></button>
+        <div class="loader hide-view"></div>
     </div>
 
     <!-- 聲音檔 -->
