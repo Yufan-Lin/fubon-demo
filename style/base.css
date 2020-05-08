@@ -11,6 +11,10 @@
     max-height: 120px;
     padding: 20px;
     border-radius: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .loader {

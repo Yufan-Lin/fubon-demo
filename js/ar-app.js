@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener("load", () => {
 
     let models = document.querySelectorAll('.female-model');
 
@@ -22,7 +22,7 @@ window.onload = () => {
         showWarning();
     });
 
-}
+}, false);
 
 function hideMainDiv() {
 
