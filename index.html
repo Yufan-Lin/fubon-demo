@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="lib/aframe.min.js"></script>
-    <!-- <script src="lib/aframe.dev.js"></script> -->
     <script src="lib/play-all-model-animations.js"></script>
     <script src="lib/aframe-orbit-controls.min.js"></script>
     <link rel="stylesheet" href="lib/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/alert.css">
+    <link rel="stylesheet" href="style/base.css">
     <title>Fubon Web Demo</title>
 </head>
 
@@ -34,7 +34,7 @@
 
             <div class="container">
 
-                <div id="ar-button-area" class="row text-center">
+                <div id="ar-button-area" class="row text-center d-none">
                     <div class="mx-auto">
                         <button href="" id="ar-button" class="btn btn-light shown-view d-none" style="display: inline;" onclick="openArDemo()">用AR看看吧！</button>
                         <button class="btn sound-btn shown-view d-none" onclick="togglePlaySound(this, 'b', false)"></button>
@@ -75,7 +75,7 @@
     <!-- 聲音檔 -->
     <audio id="model-audio" src="aud/001.mp3" preload="auto"></audio>
 
-    <a-scene class="blur-view" gltf-model="dracoDecoderPath: lib/draco/;" show-view debugUIEnabled: false; renderer="logarithmicDepthBuffer: true; precision: low; colorManagement: true;">
+    <a-scene class="blur-view" vr-mode-ui="enabled: false" gltf-model="dracoDecoderPath: lib/draco/;" show-view renderer="logarithmicDepthBuffer: true; precision: low; colorManagement: true;">
 
         <a-assets timeout="10000">
             <!-- ### 檔案位置 ### -->
@@ -86,11 +86,12 @@
         </a-assets>
 
         <!-- 左邊邊模型：position為模型位置 -->
-        <a-entity class="female-model" gltf-model="#female-model-left" position="-0.5 1.2 0" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity class="female-model" gltf-model="#female-model-left" position="-0.5 1.2 0" rotation="0 0 0" play-all-model-animations visible="false"></a-entity>
         <!-- 右邊模型：position為模型位置 -->
-        <a-entity class="female-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations></a-entity>
+        <a-entity class="female-model" gltf-model="#female-model-right" position="-0.2 1.2 2.8" rotation="0 0 0" play-all-model-animations visible="false"></a-entity>
 
         <a-entity camera orbit-controls="
+        enabled: false;
         target: 0 2 0;
         minDistance: 0;
         maxDistance: 180;
@@ -126,6 +127,11 @@
                 <input id="url-input" type="text" value="">
             </div>
         </div>
+    </div>
+
+    <div id="loading-view" class="message-view text-center">
+        <div class="loader" style="position: relative; left: 0; display: inline-block;"></div>
+        <p>模型讀取中...</p>
     </div>
 
     <!-- Non-UI components -->

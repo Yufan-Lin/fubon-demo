@@ -1,98 +1,33 @@
-// aframe event
+window.onload = () => {
 
-AFRAME.registerComponent('show-view', {
-    init: function() {
-        let shownViews = document.querySelectorAll('.shown-view');
-        shownViews.forEach((el) => {
-            el.classList.remove('d-none');
+    let models = document.querySelectorAll('.female-model');
+
+    window.addEventListener('arjs-video-loaded', (e) => {
+
+        isCameraReady = true;
+
+        showModels();
+
+        hideMainDiv();
+    });
+
+    window.addEventListener('camera-error', (e) => {
+
+        isCameraReady = false;
+
+        models.forEach((el) => {
+            el.setAttribute('visible', false);
         });
-    }
-});
 
-function openArDemo() {
+        showWarning();
+    });
 
-    window.open('ar-view.html', '_self');
 }
 
-let model = document.querySelector('#female-model-left');
-model.addEventListener('loopEnd', (e) => {
-    console.log('Looppppp');
-});
-
-// exec when init
-var input = document.querySelector('input');
-input.value = document.URL;
-
-let arBtn = document.querySelector('#ar-button');
-arBtn.addEventListener('click', (el) => {
-    playAudio();
-    window.open('ar-view.html', '_self');
-});
-
-// Alert
-
-function showAlertView() {
-    setTimeout(() => {
-        var alert = document.querySelector('#alert-popover');
-        alert.style.display = 'inline-block';
-    }, 1000);
-}
-
-function hideAlertView() {
-    var alert = document.querySelector('#alert-popover');
-    alert.style.display = 'none';
+function hideMainDiv() {
 
     let mainView = document.querySelector('#main-div');
-    let aScene = document.querySelector('a-scene');
-    mainView.classList.remove('blur-view');
-    aScene.classList.remove('blur-view');
-
-    let alertBackgound = document.querySelector('#alert-background');
-    alertBackgound.classList.add('d-none');
-
-    let sound = document.querySelector('#model-audio');
-    sound.play()
-    sound.pause();
-}
-
-function copyLink() {
-    var input = document.querySelector('input');
-    input.value = document.URL;
-
-    if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-        // for ios
-
-        var oldContentEditable = input.contentEditable
-        var oldReadOnly = input.readOnly;
-
-        input.contentEditable = true;
-        input.readOnly = false;
-
-        var range = document.createRange();
-        range.selectNodeContents(input);
-
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-
-        input.setSelectionRange(0, 999999);
-
-        input.contentEditable = oldContentEditable
-        input.readOnly = oldReadOnly;
-
-    } else {
-        // for other os
-
-        input.select();
-    }
-
-    document.execCommand('copy');
-
-    input.blur();
-
-    var copyButton = document.querySelector('#button-copy-link');
-    copyButton.className = "btn btn-success";
-    copyButton.textContent = "已複製";
+    mainView.classList.add('d-none');
 }
 
 let models = document.querySelectorAll('.female-model');
@@ -102,6 +37,7 @@ var loadedCount = 0;
 let voiceLaggingTime = 0.2;
 var isFirstEnter = true;
 var isPlaySound = false;
+var isCameraReady = false;
 
 models.forEach((el) => {
     el.addEventListener('model-did-load', (e) => {
@@ -145,7 +81,7 @@ function isModelLoadingComplete() {
 
 function showModels() {
 
-    if (isModelLoadingComplete()) {
+    if (isModelLoadingComplete() && isCameraReady) {
 
         models.forEach((el) => {
             el.setAttribute('visible', true);
@@ -160,7 +96,7 @@ function showModels() {
 
 function showFeatureTools() {
 
-    let buttons = document.querySelector('#ar-button-area');
+    let buttons = document.querySelector('.buttons');
     buttons.classList.remove('d-none');
 }
 

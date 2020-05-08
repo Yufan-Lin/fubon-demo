@@ -8,6 +8,8 @@ body {
     background-color: #F8E2EA;
     background-image: url('../img/bg-angels.jpg');
     background-size: cover;
+    position: absolute;
+    left: 0;
 }
 
 .nav {
